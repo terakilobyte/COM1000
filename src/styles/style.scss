@@ -1,0 +1,11 @@
+/* Colors */
+$black: hsl(233, 10%, 18%);
+$blue: hsl(218, 95%, 68%);
+$lightBlue: hsl(225, 25%, 94%);
+$grey: hsl(228, 3%, 35%);
+$lightGrey: hsl(231, 7%, 64%);
+$slate: hsl(227, 11%, 52%);
+
+body {
+  background-color: $lightBlue;
+}

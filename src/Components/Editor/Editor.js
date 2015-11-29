@@ -1,25 +1,25 @@
-import './../../node_modules/codemirror/lib/codemirror.css';
-import './../../node_modules/codemirror/theme/monokai.css';
-import './../../node_modules/codemirror/addon/scroll/simplescrollbars.css';
+import './../../../node_modules/codemirror/lib/codemirror.css';
+import './../../../node_modules/codemirror/theme/monokai.css';
+import './../../../node_modules/codemirror/addon/scroll/simplescrollbars.css';
 
 import React, {Component} from 'react';
 
-import {updateChallenge} from './../actions/editorActions';
+import {updateChallenge} from './../../actions/editorActions';
 
 import {connect} from 'react-redux';
 
-import CodeMirror from './../../node_modules/codemirror/lib/codemirror';
-import './../../node_modules/codemirror/mode/javascript/javascript';
-import './../../node_modules/codemirror/mode/xml/xml';
-import './../../node_modules/codemirror/mode/css/css';
-import './../../node_modules/codemirror/mode/htmlmixed/htmlmixed';
-import './../../node_modules/codemirror/addon/edit/closebrackets';
-import './../../node_modules/codemirror/addon/edit/matchbrackets';
-import './../../node_modules/codemirror/addon/scroll/simplescrollbars';
-import './../../node_modules/codemirror/addon/scroll/annotatescrollbar';
-import './../../node_modules/codemirror/addon/scroll/scrollpastend';
-import './../../node_modules/codemirror/addon/lint/lint';
-import './../../node_modules/codemirror/addon/lint/javascript-lint';
+import CodeMirror from './../../../node_modules/codemirror/lib/codemirror';
+import './../../../node_modules/codemirror/mode/javascript/javascript';
+import './../../../node_modules/codemirror/mode/xml/xml';
+import './../../../node_modules/codemirror/mode/css/css';
+import './../../../node_modules/codemirror/mode/htmlmixed/htmlmixed';
+import './../../../node_modules/codemirror/addon/edit/closebrackets';
+import './../../../node_modules/codemirror/addon/edit/matchbrackets';
+import './../../../node_modules/codemirror/addon/scroll/simplescrollbars';
+import './../../../node_modules/codemirror/addon/scroll/annotatescrollbar';
+import './../../../node_modules/codemirror/addon/scroll/scrollpastend';
+import './../../../node_modules/codemirror/addon/lint/lint';
+import './../../../node_modules/codemirror/addon/lint/javascript-lint';
 
 const connector = connect(function(state, props) {
   // State from redux

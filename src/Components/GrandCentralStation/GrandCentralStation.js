@@ -1,5 +1,11 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, {
+  Component
+}
+from 'react';
+import {
+  connect
+}
+from 'react-redux';
 import {
   backAction,
   loadFile,
@@ -8,19 +14,23 @@ import {
   fileSelect,
   loadFileExplorer,
   fileSaved
-} from './../actions/editorActions';
+}
+from './../../actions/editorActions';
 
 import $ from 'jquery';
 
-import Menu from './Menu';
-import SelectChallenge from './SelectChallenge';
-import Editor from './Editor';
-import FileExplorer from './FileExplorer';
+import Menu from '../Menu/Menu';
+import SelectChallenge from '../SelectChallenge/SelectChallenge';
+import Editor from '../Editor/Editor';
+import FileExplorer from '../FileExplorer/FileExplorer';
 import Modal from 'react-modal';
 
-import {RaisedButton} from 'material-ui';
+import {
+  RaisedButton
+}
+from 'material-ui';
 
-import './../style.css';
+import './../../style.css';
 
 const modalStyles = {
   content: {
@@ -38,7 +48,9 @@ const connector = connect(function(state) {
   return (
     state
   );
-}, null, null, {pure: false});
+}, null, null, {
+  pure: false
+});
 
 class GrandCentralStation extends Component {
 
@@ -61,7 +73,9 @@ class GrandCentralStation extends Component {
   componentWillMount() {
     const dispatch = this.props.dispatch;
     $.getJSON('/files', (files) => {
-      loadFileExplorer(dispatch, {files});
+      loadFileExplorer(dispatch, {
+        files
+      });
     });
   }
 
@@ -74,14 +88,14 @@ class GrandCentralStation extends Component {
       const indexOfCurrentChallenge = challenges.findIndex(elem => {
         return elem.id === this.props.activeChallenge.id;
       });
-      if (indexOfCurrentChallenge + motion < 0
-          || indexOfCurrentChallenge + motion > challenges.length - 1) {
+      if (indexOfCurrentChallenge + motion < 0 || indexOfCurrentChallenge +
+        motion > challenges.length - 1) {
         return;
       }
 
       loadChallenge(dispatch, {
-        'activeChallenge':
-        this.props.challenges[indexOfCurrentChallenge + motion],
+        'activeChallenge': this.props.challenges[
+          indexOfCurrentChallenge + motion],
         'view': 'ChallengeEdit'
       });
     });
@@ -109,11 +123,15 @@ class GrandCentralStation extends Component {
 
   openModal() {
     console.log('maybe opening modal');
-    this.setState({modalIsOpen: true});
+    this.setState({
+      modalIsOpen: true
+    });
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false
+    });
   }
 
   modalSave() {
@@ -139,15 +157,14 @@ class GrandCentralStation extends Component {
     loadFile(dispatch, {
       title,
       fileStore: newFileStoreObject,
-      activeFile: file.name,
-      challenges: newFileStoreObject.challenges,
-      activeChallenge: {}
+        activeFile: file.name,
+        challenges: newFileStoreObject.challenges,
+        activeChallenge: {}
     });
   }
 
   handleOpenNav() {
     if (this.props.changes) {
-      console.log('trying to fire modal');
       this.openModal();
     } else {
       this.forceOpenNav();
@@ -171,21 +188,11 @@ class GrandCentralStation extends Component {
         oldFileStore[currentFile].challenges.push({
           'id': mongoid,
           'title': mongoid,
-          'description': [
-            ''
-          ],
-          'tests': [
-            ''
-          ],
-          'challengeSeed': [
-            ''
-          ],
-          'MDNlinks': [
-            ''
-          ],
-          'solutions': [
-            ''
-          ],
+          'description': [''],
+          'tests': [''],
+          'challengeSeed': [''],
+          'MDNlinks': [''],
+          'solutions': [''],
           'type': '',
           'challengeType': 0,
           'nameCn': '',
@@ -200,19 +207,22 @@ class GrandCentralStation extends Component {
           'descriptionPt': []
         });
 
-        let AddedChallenge = {fileStore: oldFileStore};
+        let AddedChallenge = {
+          fileStore: oldFileStore
+        };
 
         createChallenge(dispatch,
-                        AddedChallenge
-                       );
+          AddedChallenge
+        );
       });
     } else {
       loadChallenge(dispatch, {
-        'activeChallenge':
-        this.props.fileStore.challenges
+        'activeChallenge': this.props.fileStore.challenges
           .filter((challenge) => {
             return challenge.id === id;
-          }).pop(), 'view': 'ChallengeEdit'
+          })
+          .pop(),
+        'view': 'ChallengeEdit'
       });
     }
   }
@@ -220,13 +230,13 @@ class GrandCentralStation extends Component {
   render() {
     console.log(this.state);
     let discard = (
-        <RaisedButton label='Discard Changes'
+      <RaisedButton label='Discard Changes'
                       onClick={this.forceOpenNav}
                       primary={true} />
     );
 
     let save = (
-        <RaisedButton label='Save Changes'
+      <RaisedButton label='Save Changes'
                       onClick={this.modalSave}
                       secondary={true} />
     );
@@ -246,31 +256,24 @@ class GrandCentralStation extends Component {
     let elements = [];
     let selectChallenges;
     if (this.props !== null && this.props.view === 'ChallengeSelect') {
-      elements = [
-        {
-          name: 'Choose File',
-          action: this.handleOpenNav.bind(this)
-        }
-      ];
+      elements = [{
+        name: 'Choose File',
+        action: this.handleOpenNav.bind(this)
+      }];
     } else {
-      elements = [
-        {
+      elements = [{
           name: 'Choose File',
           action: this.handleOpenNav.bind(this)
-        },
-        {
+        }, {
           name: 'Choose Challenge',
           action: this.backView
-        },
-        {
+        }, {
           name: 'Prev',
           action: this.handlePrevNext.bind(this, -1)
-        },
-        {
+        }, {
           name: 'Next',
           action: this.handlePrevNext.bind(this, 1)
-        },
-        {
+        }, {
           name: 'Save',
           action: this.exportFiles,
           id: 'Save'
@@ -279,9 +282,9 @@ class GrandCentralStation extends Component {
       ];
     }
 
-    if (this.props !== null
-      && this.props.fileStore
-      && Object.keys(this.props.fileStore).length) {
+    if (this.props !== null && this.props.fileStore && Object.keys(this.props
+        .fileStore)
+      .length) {
       selectChallenges = (
         <SelectChallenge
           challengeClick = {this.handleChallengeClick}
@@ -290,17 +293,17 @@ class GrandCentralStation extends Component {
       );
     }
 
-    let menu =
-      <Menu elements = {elements} />;
+    let menu = <Menu elements = {elements} />;
     let leftNav = this.props.files ?
       <FileExplorer dispatch= {this.props.dispatch}
                     files= {this.props.files}
                     loadFile= {this.handleFileIsSelected}
-                    ref='leftNav' />
-      : null;
+                    ref='leftNav' /> :
+      null;
 
     if (Object.keys(this.props.view === 'ChallengeEdit' &&
-        this.props.activeChallenge).length) {
+        this.props.activeChallenge)
+      .length) {
       return (
         <div>
           <div id='modal'>{modal}</div>
@@ -315,7 +318,6 @@ class GrandCentralStation extends Component {
       );
     } else {
 
-
       return (
         <div>
           <div id='modal'>{modal}</div>
@@ -324,7 +326,7 @@ class GrandCentralStation extends Component {
             <div style = {{ 'marginTop': '70px' }}>
               {selectChallenges}
             </div>
-            {menu}
+          {menu}
           </div>
         </div>
       );

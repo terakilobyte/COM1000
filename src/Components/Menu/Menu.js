@@ -7,6 +7,8 @@ import
   ToolbarTitle
 } from 'material-ui';
 
+import './Menu.scss';
+
 const styles = {
   fileInput: {
     cursor: 'pointer',
@@ -21,8 +23,7 @@ const styles = {
   buttonStyle: {
     fontSize: '12px',
     display: 'inline',
-    marginLeft: '-25px',
-    margineRight: '-25px'
+    margin: '12px 0 !important'
   },
   menuStyle: {
     width: '100%',
@@ -54,6 +55,7 @@ class Menu extends Component {
       let id = elem.id ? elem.id : null;
       return (
         <FlatButton key = {elem.name}
+                    className='navbar__button'
                     label = { elem.name }
                     onClick = {elem.action}
                     style = {styles.buttonStyle}
@@ -64,7 +66,7 @@ class Menu extends Component {
 
     return (
         <Toolbar style={styles.menuStyle}>
-        <ToolbarGroup key={0} float='left'>
+        <ToolbarGroup className='menu__button' key={0} float='left'>
         {MenuElements}
         </ToolbarGroup>
         <ToolbarGroup key={1} float='right'>

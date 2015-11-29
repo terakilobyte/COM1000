@@ -1,0 +1,11 @@
+@import "../../styles/style.scss";
+
+.navbar__button[style], .navbar__button[style] div {
+  &:after {
+    background-color: white;
+  }
+  &:hover {
+    border-bottom: 2px solid $blue;
+    background-color: white;
+  }
+}
