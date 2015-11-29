@@ -54,27 +54,27 @@ class Menu extends Component {
     let MenuElements = this.props.elements.map((elem) => {
       let id = elem.id ? elem.id : null;
       return (
-        <FlatButton key = {elem.name}
-                    className='navbar__button'
+        <FlatButton className='navbar__button'
+                    id={id}
+                    key = {elem.name}
                     label = { elem.name }
                     onClick = {elem.action}
                     style = {styles.buttonStyle}
-                    id={id}
         />
       );
     });
 
     return (
-        <Toolbar style={styles.menuStyle}>
-        <ToolbarGroup className='menu__button' key={0} float='left'>
-        {MenuElements}
+      <Toolbar style={styles.menuStyle}>
+        <ToolbarGroup className='menu__button' float='left' key={0}>
+          {MenuElements}
         </ToolbarGroup>
         <ToolbarGroup key={1} float='right'>
-        <ToolbarTitle text= {this.props.activeFile}
-                      style={styles.titleStyle}
-        />
+          <ToolbarTitle style={styles.titleStyle}
+                        text= {this.props.activeFile}
+          />
         </ToolbarGroup>
-        </Toolbar>
+      </Toolbar>
     );
   }
 }

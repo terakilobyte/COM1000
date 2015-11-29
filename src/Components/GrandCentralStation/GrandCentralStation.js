@@ -1,11 +1,9 @@
 import React, {
   Component
-}
-from 'react';
+} from 'react';
 import {
   connect
-}
-from 'react-redux';
+} from 'react-redux';
 import {
   backAction,
   loadFile,
@@ -14,8 +12,7 @@ import {
   fileSelect,
   loadFileExplorer,
   fileSaved
-}
-from './../../actions/editorActions';
+} from './../../actions/editorActions';
 
 import $ from 'jquery';
 
@@ -28,7 +25,7 @@ import Modal from 'react-modal';
 import {
   RaisedButton
 }
-from 'material-ui';
+  from 'material-ui';
 
 import './../../style.css';
 
@@ -95,7 +92,7 @@ class GrandCentralStation extends Component {
 
       loadChallenge(dispatch, {
         'activeChallenge': this.props.challenges[
-          indexOfCurrentChallenge + motion],
+        indexOfCurrentChallenge + motion],
         'view': 'ChallengeEdit'
       });
     });
@@ -157,9 +154,9 @@ class GrandCentralStation extends Component {
     loadFile(dispatch, {
       title,
       fileStore: newFileStoreObject,
-        activeFile: file.name,
-        challenges: newFileStoreObject.challenges,
-        activeChallenge: {}
+      activeFile: file.name,
+      challenges: newFileStoreObject.challenges,
+      activeChallenge: {}
     });
   }
 
@@ -178,7 +175,6 @@ class GrandCentralStation extends Component {
 
   handleChallengeClick(id) {
     let dispatch = this.props.dispatch;
-
     let oldFileStore = this.props.fileStore;
     let currentFile = this.props.activeFile;
 
@@ -231,14 +227,14 @@ class GrandCentralStation extends Component {
     console.log(this.state);
     let discard = (
       <RaisedButton label='Discard Changes'
-                      onClick={this.forceOpenNav}
-                      primary={true} />
+                    onClick={this.forceOpenNav}
+                    primary={true} />
     );
 
     let save = (
       <RaisedButton label='Save Changes'
-                      onClick={this.modalSave}
-                      secondary={true} />
+                    onClick={this.modalSave}
+                    secondary={true} />
     );
 
     // Modal.setAppElement('#modal');
@@ -246,10 +242,11 @@ class GrandCentralStation extends Component {
       <Modal
         isOpen = {this.state.modalIsOpen}
         onRequestClose={this.closeModal}
-        style = {modalStyles}>
-            <h2>Warning:</h2>
-            <p>You're attempting to load a file but you have changes.</p>
-            {discard} {save}
+        style = {modalStyles}
+      >
+        <h2>Warning:</h2>
+        <p>You're attempting to load a file but you have changes.</p>
+        {discard} {save}
       </Modal>
     );
 
@@ -261,30 +258,34 @@ class GrandCentralStation extends Component {
         action: this.handleOpenNav.bind(this)
       }];
     } else {
-      elements = [{
+      elements = [
+        {
           name: 'Choose File',
           action: this.handleOpenNav.bind(this)
-        }, {
+        },
+        {
           name: 'Choose Challenge',
           action: this.backView
-        }, {
+        },
+        {
           name: 'Prev',
           action: this.handlePrevNext.bind(this, -1)
-        }, {
+        },
+        {
           name: 'Next',
           action: this.handlePrevNext.bind(this, 1)
-        }, {
+        },
+        {
           name: 'Save',
           action: this.exportFiles,
           id: 'Save'
         }
-
       ];
     }
 
     if (this.props !== null && this.props.fileStore && Object.keys(this.props
         .fileStore)
-      .length) {
+        .length) {
       selectChallenges = (
         <SelectChallenge
           challengeClick = {this.handleChallengeClick}
@@ -303,7 +304,7 @@ class GrandCentralStation extends Component {
 
     if (Object.keys(this.props.view === 'ChallengeEdit' &&
         this.props.activeChallenge)
-      .length) {
+        .length) {
       return (
         <div>
           <div id='modal'>{modal}</div>
@@ -326,7 +327,7 @@ class GrandCentralStation extends Component {
             <div style = {{ 'marginTop': '70px' }}>
               {selectChallenges}
             </div>
-          {menu}
+            {menu}
           </div>
         </div>
       );
